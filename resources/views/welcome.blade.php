@@ -91,7 +91,7 @@
                                     <td>{{ $product->size }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>
-                                        <button class="btn btn-success">Edit</button>
+                                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal">Edit</a>
                                     </td>
                                     <td>
                                         <!-- csrf token pass to delete -->

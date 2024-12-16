@@ -25,6 +25,11 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
+    public function edit($id){
+        $product = Product::find($id);
+        return view('product.edit',compact('product'));
+    }
+
     public function delete($id){
         Product::destroy($id);
         return redirect()->back();
