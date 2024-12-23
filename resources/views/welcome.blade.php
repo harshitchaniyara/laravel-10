@@ -4,6 +4,7 @@
 
 <!-- product create button to open model like this create -->
 
+
 <!-- open product model -->
 <div class="modal fade" tabindex="-1" id="productModal">
   <div class="modal-dialog">
@@ -12,7 +13,7 @@
         <h5 class="modal-title">Product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body p-4">
         <form action="{{ route('product.store') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -56,6 +57,16 @@
 <!-- close product model -->
 
 <div class="container mt-4">
+    <div class="row justify-content-center mb-2">
+        <div class="col-md-8">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>    
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -91,7 +102,9 @@
                                     <td>{{ $product->size }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>
-                                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal">Edit</a>
+                                        <a href="{{ route('product.edit', $product->id) }}">
+                                            <button class="btn btn-success">Edit</button>
+                                        </a>
                                     </td>
                                     <td>
                                         <!-- csrf token pass to delete -->

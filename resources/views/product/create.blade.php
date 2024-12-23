@@ -1,4 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<span>Product Create Page</span>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        fkfk
+    </div>
+</div>
 @endsection

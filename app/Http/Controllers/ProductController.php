@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Arr;
 
 class ProductController extends Controller
 {
@@ -17,17 +18,18 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
-        // dd($request->all());
-
-        $product = $request->all();
-
-        Product::create(['code' => $product['code'], 'name' => $product['name'], 'category' => $product['category'], 'size' => $product['size'], 'price' => $product['price'], 'description' => $product['description']]);
+        Product::create(Arr::except($request->all(), ['_token']));
         return redirect()->back();
     }
 
     public function edit($id){
-        $product = Product::find($id);
-        return view('product.edit',compact('product'));
+        $products = Product::find($id);
+        return view('product.edit',compact('products'));
+    }
+
+    public function update(Request $request, $id){
+        Product::where('id', $id)->update(Arr::except($request->all(), ['_token']));
+        return redirect()->route('product.index')->with('success', 'Record updated successfully!');
     }
 
     public function delete($id){
